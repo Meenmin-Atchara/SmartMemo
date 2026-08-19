@@ -13,7 +13,7 @@
 ---
 
 ### 🚀 เข้าใช้งานระบบ (Live Demo)
-👉 [คลิกที่นี่เพื่อเข้าใช้งาน Smart Memo](ใส่ URL ของ GitHub Pages ที่นี่)
+👉 [คลิกที่นี่เพื่อเข้าใช้งาน Smart Memo](https://smartmemo-6fm7.onrender.com)
 
 ---
 
