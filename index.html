@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบขอเพิ่มเงื่อนไข Master Data Packaging</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <div class="form-panel">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 class="form-header-title mb-0">
+                แบบฟอร์มขอเพิ่มเงื่อนไข Master Data
+            </h3>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header blue">ส่วนที่ 1: ข้อมูลพื้นฐานของป้ายสินค้า</div>
+            <div class="section-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">รหัสป้ายสินค้า (Label Code) *</label>
+                        <input type="text" class="form-control" id="f_labelCode" placeholder="ระบุรหัสป้าย">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">ชื่อป้ายสินค้า (Label Name) *</label>
+                        <input type="text" class="form-control" id="f_labelName" placeholder="ระบุชื่อป้าย">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">ชื่อลูกค้า / แบรนด์ *</label>
+                        <input type="text" class="form-control" id="f_brand" placeholder="ระบุแบรนด์">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">วันที่ต้องการให้มีผลใช้งาน *</label>
+                        <input type="date" class="form-control" id="f_date">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header gray">ส่วนที่ 2: รายละเอียดเงื่อนไขการนำไปใช้งาน</div>
+            <div class="section-body">
+
+                <h6 class="fw-bold mb-3" style="color: var(--primary-blue);">
+                    1. เงื่อนไขสำหรับ "ถุงบรรจุสินค้า"
+                </h6>
+
+                <div id="sec-bag" class="mb-4">
+                    <div class="mb-3">
+                        <label class="form-label">รหัสถุงบรรจุสินค้า (Bag Code)</label>
+                        <input type="text" class="form-control" id="f_bagCode">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ประเภทสินค้า / เกรดสินค้า</label>
+                        <input type="text" class="form-control" id="f_bagGrade">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ขนาดบรรจุ</label>
+                        <input type="text" class="form-control" id="f_bagSize" placeholder="เช่น 25 กก. / 50 กก.">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เงื่อนไข/ข้อกำหนดเพิ่มเติม</label>
+                        <textarea class="form-control" id="f_bagDesc" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <hr class="text-muted mb-4">
+
+                <h6 class="fw-bold mb-3" style="color: var(--primary-blue);">
+                    2. เงื่อนไขสำหรับ "Sticker"
+                </h6>
+
+                <div id="sec-sticker" class="mb-4">
+                    <div class="mb-3">
+                        <label class="form-label">รหัสสติกเกอร์ (Sticker Code)</label>
+                        <input type="text" class="form-control" id="f_stickerCode">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">ตำแหน่งการติดสติกเกอร์</label>
+                        <input type="text" class="form-control" id="f_stickerPlace" placeholder="เช่น บนกระสอบ / บนตัวป้าย">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เงื่อนไขเพิ่มเติม</label>
+                        <textarea class="form-control" id="f_stickerDesc" rows="2" placeholder="เช่น ใช้เฉพาะเกรดส่งออก"></textarea>
+                    </div>
+                </div>
+
+                <hr class="text-muted mb-4">
+
+                <h6 class="fw-bold mb-3" style="color: var(--primary-blue);">
+                    3. เงื่อนไขสำหรับ "ผ้าใบและแถบสี"
+                </h6>
+
+                <div id="sec-canvas" class="mb-4">
+                    <div class="mb-3">
+                        <label class="form-label">รหัสหรือประเภทของผ้าใบ (Canvas Code/Type)</label>
+                        <input type="text" class="form-control" id="f_canvasCode">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">สีของแถบสี (Color Band)</label>
+                        <input type="text" class="form-control" id="f_canvasColor">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เงื่อนไขการเย็บหรือวางตำแหน่ง</label>
+                        <textarea class="form-control" id="f_canvasDesc" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <hr class="text-muted mb-4">
+
+                <h6 class="fw-bold mb-3" style="color: var(--primary-blue);">
+                    4. เงื่อนไขสำหรับ "สายรัดกระสอบ"
+                </h6>
+
+                <div id="sec-strap" class="mb-4">
+                    <div class="mb-3">
+                        <label class="form-label">รหัสหรือประเภทสายรัด (Strap Code/Type)</label>
+                        <input type="text" class="form-control" id="f_strapCode">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">สีของสายรัดกระสอบ (Strap Color)</label>
+                        <input type="text" class="form-control" id="f_strapColor">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">จำนวนเส้นและรูปแบบการรัด</label>
+                        <input type="text" class="form-control" id="f_strapPattern" placeholder="เช่น รัด 2 เส้นขนาน, รัดกากบาท">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เงื่อนไขเพิ่มเติม</label>
+                        <textarea class="form-control" id="f_strapDesc" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3 mb-2">
+            <button
+                type="button"
+                class="btn btn-primary flex-fill"
+                onclick="saveDocument()">
+                💾 บันทึกเอกสาร
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-success flex-fill"
+                onclick="window.print()">
+                🖨 พิมพ์เอกสาร
+            </button>
+        </div>
+
+        <div class="text-center mt-2 text-muted" style="font-size: 0.8rem;">
+            * หากต้องการบันทึกเป็น PDF ให้เลือก Destination เป็น “Save as PDF”
+        </div>
+    </div>
+
+    <div class="preview-panel">
+        <div class="a4-paper">
+
+            <div class="memo-header">
+                <h1>บันทึกข้อความ</h1>
+                <h2>บริษัท ขอนแก่นแหอวน จำกัด</h2>
+                <div class="logo-kkf"><span>K</span>KF</div>
+            </div>
+
+            <div class="memo-meta">
+                <div class="memo-meta-left">
+                    <b>เรื่อง :</b> ขอเพิ่มเงื่อนไขการใช้งานบรรจุภัณฑ์ (Master Data Packaging)<br>
+                    <b>เรียน :</b> ฝ่าย MIS / สาขาผลิตที่เกี่ยวข้อง<br>
+                    <b>จาก :</b> ฝ่ายขาย (Sales Dept.)
+                </div>
+
+                <div class="memo-meta-right">
+                    <b>Memo ID :</b> <span id="p_memoId">XX-XX-XXX</span><br>
+                    <b>ลงวันที่ :</b> <span id="p_date">.......................</span>
+                </div>
+            </div>
+
+            <div class="action-box">
+                <div class="action-col">
+                    <div class="chk-item"><span class="chk-box checked"></span> เพื่อโปรดทราบ</div>
+                    <div class="chk-item"><span class="chk-box"></span> เพื่อพิจารณาอนุมัติ</div>
+                    <div class="chk-item"><span class="chk-box"></span> เพื่อขอความคิดเห็น</div>
+                </div>
+
+                <div class="action-col">
+                    <div class="chk-item"><span class="chk-box"></span> เพื่อลงนาม</div>
+                    <div class="chk-item"><span class="chk-box"></span> เพื่อโปรดสั่งการ</div>
+                    <div class="chk-item"><span class="chk-box"></span> เพื่อใช้เวียนในหน่วยงาน</div>
+                </div>
+
+                <div class="action-col">
+                    <div class="chk-item">
+                        <span class="chk-box checked"></span>
+                        <b>เพื่อโปรดดำเนินการตามที่ท่านต้องการ</b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="memo-content">
+                <h3>บันทึกเพิ่มเติม</h3>
+
+                <div class="data-row">
+                    <div class="data-label">รหัสลูกค้า / แบรนด์ :</div>
+                    <div class="data-value" id="p_brand"></div>
+                </div>
+
+                <div class="data-row">
+                    <div class="data-label">รหัสป้ายสินค้า :</div>
+                    <div class="data-value">
+                        <span id="p_labelCode"></span> -
+                        <span id="p_labelName"></span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 15px;">
+                    อ้างอิงความต้องการของลูกค้า ฝ่ายขายมีความประสงค์ขอเพิ่มเงื่อนไขการใช้งานบรรจุภัณฑ์
+                    เพื่อให้ระบบรองรับการผลิตได้อย่างถูกต้อง โดยมีรายละเอียดดังต่อไปนี้:
+                </div>
+
+                <div class="detail-group" id="p_sec_bag">
+                    <b><u>1. เงื่อนไขสำหรับ "ถุงบรรจุสินค้า"</u></b>
+                    <div class="data-row">
+                        <div class="data-label">- รหัสถุงบรรจุสินค้า :</div>
+                        <div class="data-value" id="p_bagCode"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- ประเภท / เกรดสินค้า :</div>
+                        <div class="data-value" id="p_bagGrade"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- ขนาดบรรจุ :</div>
+                        <div class="data-value" id="p_bagSize"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- เงื่อนไขเพิ่มเติม :</div>
+                        <div class="data-value" id="p_bagDesc"></div>
+                    </div>
+                </div>
+
+                <div class="detail-group" id="p_sec_sticker">
+                    <b><u>2. เงื่อนไขสำหรับ "Sticker"</u></b>
+                    <div class="data-row">
+                        <div class="data-label">- รหัสสติกเกอร์ :</div>
+                        <div class="data-value" id="p_stickerCode"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- ตำแหน่งการติด :</div>
+                        <div class="data-value" id="p_stickerPlace"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- เงื่อนไขเพิ่มเติม :</div>
+                        <div class="data-value" id="p_stickerDesc"></div>
+                    </div>
+                </div>
+
+                <div class="detail-group" id="p_sec_canvas">
+                    <b><u>3. เงื่อนไขสำหรับ "ผ้าใบและแถบสี"</u></b>
+                    <div class="data-row">
+                        <div class="data-label">- รหัสผ้าใบ :</div>
+                        <div class="data-value" id="p_canvasCode"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- สีของแถบสี :</div>
+                        <div class="data-value" id="p_canvasColor"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- เงื่อนไขการใช้งาน:</div>
+                        <div class="data-value" id="p_canvasDesc"></div>
+                    </div>
+                </div>
+
+                <div class="detail-group" id="p_sec_strap">
+                    <b><u>4. เงื่อนไขสำหรับ "สายรัดกระสอบ"</u></b>
+                    <div class="data-row">
+                        <div class="data-label">- รหัส/ประเภทสายรัด :</div>
+                        <div class="data-value" id="p_strapCode"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- สีสายรัด :</div>
+                        <div class="data-value" id="p_strapColor"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- จำนวน/รูปแบบ :</div>
+                        <div class="data-value" id="p_strapPattern"></div>
+                    </div>
+                    <div class="data-row">
+                        <div class="data-label">- เงื่อนไขเพิ่มเติม :</div>
+                        <div class="data-value" id="p_strapDesc"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    จึงเรียนมาเพื่อโปรดทราบและดำเนินการอัพเดทข้อมูล Master Data ลงในระบบต่อไป
+                </div>
+            </div>
+
+            <div class="signatures">
+                <div class="sign-box">
+                    <div class="sign-line"></div>
+                    (.......................................................)<br>
+                    <b>พนักงานฝ่ายขาย</b><br>
+                    ผู้ขอเพิ่มข้อมูล
+                </div>
+
+                <div class="sign-box">
+                    <div class="sign-line"></div>
+                    (.......................................................)<br>
+                    <b>ฝ่าย Digital / Marketing</b><br>
+                    ผู้ตรวจสอบเอกสาร
+                </div>
+
+                <div class="sign-box">
+                    <div class="sign-line"></div>
+                    (.......................................................)<br>
+                    <b>ฝ่าย MIS</b><br>
+                    ผู้บันทึกข้อมูลเข้าระบบ
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+<script>
+function saveDocument() {
+    const fields = document.querySelectorAll(
+        '.form-panel input, .form-panel select, .form-panel textarea'
+    );
+
+    const documentData = {};
+
+    fields.forEach(field => {
+        if (field.id) {
+            documentData[field.id] = field.value;
+        }
+    });
+
+    localStorage.setItem(
+        'masterDataPackagingDocument',
+        JSON.stringify(documentData)
+    );
+
+    alert('บันทึกเอกสารเรียบร้อยแล้ว');
+}
+</script>
+
+</body>
+</html>
