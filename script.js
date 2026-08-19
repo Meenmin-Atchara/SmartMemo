@@ -53,7 +53,7 @@ function createMenu() {
     const menu = document.createElement('nav');
     menu.className = 'main-menu';
     menu.innerHTML = `
-        <div class="menu-title">ระบบเอกสาร Master Data Packaging</div>
+        <div class="menu-title">ระบบออกเอกสาร Smart Memo Systems.</div>
         <div class="menu-actions">
             <button class="menu-btn active" id="menuMasterData">
                 ออกเอกสารขอเพิ่มเงื่อนไข Master Data Packaging
