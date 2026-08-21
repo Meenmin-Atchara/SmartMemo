@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบออกเอกสารขอเพิ่มเงื่อนไข</title>
+    <title>ระบบขอเพิ่มเงื่อนไข Master Data Packaging</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,8 +16,95 @@
     <div class="form-panel">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="form-header-title mb-0">
-                แบบฟอร์มขอเพิ่มเงื่อนไขการใช้งานบรรจุภัณฑ์
+                แบบฟอร์มขอเพิ่มเงื่อนไข Master Data
             </h3>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header blue">ส่วนหัวเอกสาร</div>
+            <div class="section-body">
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label">เรื่อง *</label>
+                        <input type="text" class="form-control" id="f_subject" placeholder="ระบุเรื่อง" oninput="updatePreview()">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">เรียน (เลือกได้หลายรายการ) *</label>
+                        <div style="max-height:120px; overflow-y:auto; border:1px solid #ddd; padding:8px; border-radius:5px;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="learn_md" onchange="updatePreview()">
+                                <label class="form-check-label" for="learn_md">ผู้จัดการฝ่ายผลิต</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="learn_mis" onchange="updatePreview()">
+                                <label class="form-check-label" for="learn_mis">ฝ่าย MIS</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="learn_sales" onchange="updatePreview()">
+                                <label class="form-check-label" for="learn_sales">ผู้จัดการฝ่ายขาย</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="learn_other" onchange="updatePreview()">
+                                <label class="form-check-label" for="learn_other">อื่นๆ (ระบุ)</label>
+                                <input type="text" class="form-control form-control-sm mt-1" id="learn_other_text" placeholder="ระบุ..." oninput="updatePreview()" style="display:none;">
+                            </div>
+                        </div>
+                        <script>
+                            document.getElementById('learn_other').addEventListener('change', function() {
+                                document.getElementById('learn_other_text').style.display = this.checked ? 'block' : 'none';
+                            });
+                        </script>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">จาก (เลือกเพียงรายการเดียว) *</label>
+                        <select class="form-select" id="f_from" onchange="updatePreview()">
+                            <option value="">-- เลือก --</option>
+                            <option value="ฝ่ายขาย (Sales Dept.)">ฝ่ายขาย (Sales Dept.)</option>
+                            <option value="ฝ่ายผลิต (Production Dept.)">ฝ่ายผลิต (Production Dept.)</option>
+                            <option value="ฝ่ายจัดซื้อ (Procurement Dept.)">ฝ่ายจัดซื้อ (Procurement Dept.)</option>
+                            <option value="ฝ่ายการตลาด (Marketing Dept.)">ฝ่ายการตลาด (Marketing Dept.)</option>
+                            <option value="ฝ่ายคลังสินค้า (Warehouse Dept.)">ฝ่ายคลังสินค้า (Warehouse Dept.)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">ลงวันที่ *</label>
+                        <input type="date" class="form-control" id="f_date_doc" onchange="updatePreview()">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">วัตถุประสงค์</label>
+                        <div style="border:1px solid #ddd; padding:8px; border-radius:5px;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_know" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_know">เพื่อโปรดทราบ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_approve" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_approve">เพื่อพิจารณาอนุมัติ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_opinion" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_opinion">เพื่อขอความคิดเห็น</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_sign" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_sign">เพื่อลงนาม</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_order" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_order">เพื่อโปรดสั่งการ</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_circulate" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_circulate">เพื่อใช้เวียนในหน่วยงาน</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="purpose_action" onchange="updatePreview()">
+                                <label class="form-check-label" for="purpose_action"><b>เพื่อโปรดดำเนินการตามที่ท่านต้องการ</b></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="section-card">
@@ -26,19 +113,19 @@
                 <div class="row g-3">
                     <div class="col-md-6">
                         <label class="form-label">รหัสป้ายสินค้า (Label Code) *</label>
-                        <input type="text" class="form-control" id="f_labelCode" placeholder="ระบุรหัสป้าย">
+                        <input type="text" class="form-control" id="f_labelCode" placeholder="ระบุรหัสป้าย" oninput="updatePreview()">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">ชื่อป้ายสินค้า (Label Name) *</label>
-                        <input type="text" class="form-control" id="f_labelName" placeholder="ระบุชื่อป้าย">
+                        <input type="text" class="form-control" id="f_labelName" placeholder="ระบุชื่อป้าย" oninput="updatePreview()">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">ชื่อลูกค้า / แบรนด์ *</label>
-                        <input type="text" class="form-control" id="f_brand" placeholder="ระบุแบรนด์">
+                        <input type="text" class="form-control" id="f_brand" placeholder="ระบุแบรนด์" oninput="updatePreview()">
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">วันที่ต้องการให้มีผลใช้งาน *</label>
-                        <input type="date" class="form-control" id="f_date">
+                        <input type="date" class="form-control" id="f_date" onchange="updatePreview()">
                     </div>
                 </div>
             </div>
@@ -55,19 +142,19 @@
                 <div id="sec-bag" class="mb-4">
                     <div class="mb-3">
                         <label class="form-label">รหัสถุงบรรจุสินค้า (Bag Code)</label>
-                        <input type="text" class="form-control" id="f_bagCode">
+                        <input type="text" class="form-control" id="f_bagCode" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ประเภทสินค้า / เกรดสินค้า</label>
-                        <input type="text" class="form-control" id="f_bagGrade">
+                        <input type="text" class="form-control" id="f_bagGrade" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ขนาดบรรจุ</label>
-                        <input type="text" class="form-control" id="f_bagSize" placeholder="เช่น 25 กก. / 50 กก.">
+                        <input type="text" class="form-control" id="f_bagSize" placeholder="เช่น 25 กก. / 50 กก." oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">เงื่อนไข/ข้อกำหนดเพิ่มเติม</label>
-                        <textarea class="form-control" id="f_bagDesc" rows="2"></textarea>
+                        <textarea class="form-control" id="f_bagDesc" rows="2" oninput="updatePreview()"></textarea>
                     </div>
                 </div>
 
@@ -80,15 +167,15 @@
                 <div id="sec-sticker" class="mb-4">
                     <div class="mb-3">
                         <label class="form-label">รหัสสติกเกอร์ (Sticker Code)</label>
-                        <input type="text" class="form-control" id="f_stickerCode">
+                        <input type="text" class="form-control" id="f_stickerCode" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ตำแหน่งการติดสติกเกอร์</label>
-                        <input type="text" class="form-control" id="f_stickerPlace" placeholder="เช่น บนกระสอบ / บนตัวป้าย">
+                        <input type="text" class="form-control" id="f_stickerPlace" placeholder="เช่น บนกระสอบ / บนตัวป้าย" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">เงื่อนไขเพิ่มเติม</label>
-                        <textarea class="form-control" id="f_stickerDesc" rows="2" placeholder="เช่น ใช้เฉพาะเกรดส่งออก"></textarea>
+                        <textarea class="form-control" id="f_stickerDesc" rows="2" placeholder="เช่น ใช้เฉพาะเกรดส่งออก" oninput="updatePreview()"></textarea>
                     </div>
                 </div>
 
@@ -101,15 +188,15 @@
                 <div id="sec-canvas" class="mb-4">
                     <div class="mb-3">
                         <label class="form-label">รหัสหรือประเภทของผ้าใบ (Canvas Code/Type)</label>
-                        <input type="text" class="form-control" id="f_canvasCode">
+                        <input type="text" class="form-control" id="f_canvasCode" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">สีของแถบสี (Color Band)</label>
-                        <input type="text" class="form-control" id="f_canvasColor">
+                        <input type="text" class="form-control" id="f_canvasColor" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">เงื่อนไขการเย็บหรือวางตำแหน่ง</label>
-                        <textarea class="form-control" id="f_canvasDesc" rows="2"></textarea>
+                        <textarea class="form-control" id="f_canvasDesc" rows="2" oninput="updatePreview()"></textarea>
                     </div>
                 </div>
 
@@ -122,19 +209,19 @@
                 <div id="sec-strap" class="mb-4">
                     <div class="mb-3">
                         <label class="form-label">รหัสหรือประเภทสายรัด (Strap Code/Type)</label>
-                        <input type="text" class="form-control" id="f_strapCode">
+                        <input type="text" class="form-control" id="f_strapCode" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">สีของสายรัดกระสอบ (Strap Color)</label>
-                        <input type="text" class="form-control" id="f_strapColor">
+                        <input type="text" class="form-control" id="f_strapColor" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">จำนวนเส้นและรูปแบบการรัด</label>
-                        <input type="text" class="form-control" id="f_strapPattern" placeholder="เช่น รัด 2 เส้นขนาน, รัดกากบาท">
+                        <input type="text" class="form-control" id="f_strapPattern" placeholder="เช่น รัด 2 เส้นขนาน, รัดกากบาท" oninput="updatePreview()">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">เงื่อนไขเพิ่มเติม</label>
-                        <textarea class="form-control" id="f_strapDesc" rows="2"></textarea>
+                        <textarea class="form-control" id="f_strapDesc" rows="2" oninput="updatePreview()"></textarea>
                     </div>
                 </div>
             </div>
@@ -166,39 +253,39 @@
 
             <div class="memo-header">
                 <h1>บันทึกข้อความ</h1>
-                <h2>บริษัท ........................ จำกัด</h2>
-            <!--    <div class="logo-kkf"><span>K</span>KF</div> -->
+                <h2>บริษัท ขอนแก่นแหอวน จำกัด</h2>
+                <div class="logo-kkf"><span>K</span>KF</div>
             </div>
 
             <div class="memo-meta">
                 <div class="memo-meta-left">
-                    <b>เรื่อง :</b> ขอเพิ่มเงื่อนไขการใช้งานบรรจุภัณฑ์<br>
-                    <b>เรียน :</b> ฝ่าย MIS / สาขาผลิตที่เกี่ยวข้อง<br>
-                    <b>จาก :</b> ฝ่ายขาย (Sales Dept.)
+                    <b>เรื่อง :</b> <span id="p_subject">...............................................................................</span><br>
+                    <b>เรียน :</b> <span id="p_learn">...............................................................................</span><br>
+                    <b>จาก :</b> <span id="p_from">ฝ่ายขาย (Sales Dept.)</span>
                 </div>
 
                 <div class="memo-meta-right">
                     <b>Memo ID :</b> <span id="p_memoId">XX-XX-XXX</span><br>
-                    <b>ลงวันที่ :</b> <span id="p_date">.......................</span>
+                    <b>ลงวันที่ :</b> <span id="p_date_doc">.......................</span>
                 </div>
             </div>
 
-            <div class="action-box">
+            <div class="action-box" id="p_action_box">
                 <div class="action-col">
-                    <div class="chk-item"><span class="chk-box checked"></span> เพื่อโปรดทราบ</div>
-                    <div class="chk-item"><span class="chk-box"></span> เพื่อพิจารณาอนุมัติ</div>
-                    <div class="chk-item"><span class="chk-box"></span> เพื่อขอความคิดเห็น</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_know"></span> เพื่อโปรดทราบ</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_approve"></span> เพื่อพิจารณาอนุมัติ</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_opinion"></span> เพื่อขอความคิดเห็น</div>
                 </div>
 
                 <div class="action-col">
-                    <div class="chk-item"><span class="chk-box"></span> เพื่อลงนาม</div>
-                    <div class="chk-item"><span class="chk-box"></span> เพื่อโปรดสั่งการ</div>
-                    <div class="chk-item"><span class="chk-box"></span> เพื่อใช้เวียนในหน่วยงาน</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_sign"></span> เพื่อลงนาม</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_order"></span> เพื่อโปรดสั่งการ</div>
+                    <div class="chk-item"><span class="chk-box" id="cb_circulate"></span> เพื่อใช้เวียนในหน่วยงาน</div>
                 </div>
 
                 <div class="action-col">
                     <div class="chk-item">
-                        <span class="chk-box checked"></span>
+                        <span class="chk-box" id="cb_action"></span>
                         <b>เพื่อโปรดดำเนินการตามที่ท่านต้องการ</b>
                     </div>
                 </div>
@@ -222,7 +309,7 @@
 
                 <div style="margin-top: 15px;">
                     อ้างอิงความต้องการของลูกค้า ฝ่ายขายมีความประสงค์ขอเพิ่มเงื่อนไขการใช้งานบรรจุภัณฑ์
-                    เพื่อให้ระบบรองรับการผลิตได้อย่างถูกต้อง โดยมีรายละเอียดดังต่อไปนี้
+                    เพื่อให้ระบบรองรับการผลิตได้อย่างถูกต้อง โดยมีรายละเอียดดังต่อไปนี้:
                 </div>
 
                 <div class="detail-group" id="p_sec_bag">
@@ -298,7 +385,7 @@
                 </div>
 
                 <div style="margin-top: 25px;">
-                    จึงเรียนมาเพื่อโปรดทราบและดำเนินการต่อไป
+                    จึงเรียนมาเพื่อโปรดทราบและดำเนินการอัพเดทข้อมูล Master Data ลงในระบบต่อไป
                 </div>
             </div>
 
@@ -317,21 +404,101 @@
                     ผู้ตรวจสอบเอกสาร
                 </div>
 
-            <!--    <div class="sign-box">
+                <div class="sign-box">
                     <div class="sign-line"></div>
                     (.......................................................)<br>
                     <b>ฝ่าย MIS</b><br>
                     ผู้บันทึกข้อมูลเข้าระบบ
                 </div>
-            </div> -->
+            </div>
 
         </div>
     </div>
 </div>
 
 <script src="script.js"></script>
-
 <script>
+// Set default date to today
+document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('f_date_doc').value = today;
+    document.getElementById('f_date').value = today;
+    updatePreview();
+});
+
+function updatePreview() {
+    // Subject
+    const subject = document.getElementById('f_subject').value || '...............................................................................';
+    document.getElementById('p_subject').textContent = subject;
+
+    // Learn (multiple checkboxes)
+    const learnItems = [];
+    if (document.getElementById('learn_md').checked) learnItems.push('ผู้จัดการฝ่ายผลิต');
+    if (document.getElementById('learn_mis').checked) learnItems.push('ฝ่าย MIS');
+    if (document.getElementById('learn_sales').checked) learnItems.push('ผู้จัดการฝ่ายขาย');
+    if (document.getElementById('learn_other').checked) {
+        const otherText = document.getElementById('learn_other_text').value;
+        learnItems.push(otherText ? otherText : 'อื่นๆ (ระบุ)');
+    }
+    document.getElementById('p_learn').textContent = learnItems.length > 0 ? learnItems.join(', ') : '...............................................................................';
+
+    // From
+    const from = document.getElementById('f_from').value || 'ฝ่ายขาย (Sales Dept.)';
+    document.getElementById('p_from').textContent = from;
+
+    // Date
+    const dateDoc = document.getElementById('f_date_doc').value;
+    document.getElementById('p_date_doc').textContent = dateDoc || '.......................';
+
+    // Purpose checkboxes
+    const purposeMap = {
+        know: 'purpose_know',
+        approve: 'purpose_approve',
+        opinion: 'purpose_opinion',
+        sign: 'purpose_sign',
+        order: 'purpose_order',
+        circulate: 'purpose_circulate',
+        action: 'purpose_action'
+    };
+
+    for (const [id, cbId] of Object.entries(purposeMap)) {
+        const checkbox = document.getElementById(cbId);
+        const previewCb = document.getElementById('cb_' + id);
+        if (checkbox && previewCb) {
+            previewCb.classList.toggle('checked', checkbox.checked);
+        }
+    }
+
+    // Brand
+    document.getElementById('p_brand').textContent = document.getElementById('f_brand').value || '';
+
+    // Label code + name
+    document.getElementById('p_labelCode').textContent = document.getElementById('f_labelCode').value || '';
+    document.getElementById('p_labelName').textContent = document.getElementById('f_labelName').value || '';
+
+    // Bag
+    document.getElementById('p_bagCode').textContent = document.getElementById('f_bagCode').value || '';
+    document.getElementById('p_bagGrade').textContent = document.getElementById('f_bagGrade').value || '';
+    document.getElementById('p_bagSize').textContent = document.getElementById('f_bagSize').value || '';
+    document.getElementById('p_bagDesc').textContent = document.getElementById('f_bagDesc').value || '';
+
+    // Sticker
+    document.getElementById('p_stickerCode').textContent = document.getElementById('f_stickerCode').value || '';
+    document.getElementById('p_stickerPlace').textContent = document.getElementById('f_stickerPlace').value || '';
+    document.getElementById('p_stickerDesc').textContent = document.getElementById('f_stickerDesc').value || '';
+
+    // Canvas
+    document.getElementById('p_canvasCode').textContent = document.getElementById('f_canvasCode').value || '';
+    document.getElementById('p_canvasColor').textContent = document.getElementById('f_canvasColor').value || '';
+    document.getElementById('p_canvasDesc').textContent = document.getElementById('f_canvasDesc').value || '';
+
+    // Strap
+    document.getElementById('p_strapCode').textContent = document.getElementById('f_strapCode').value || '';
+    document.getElementById('p_strapColor').textContent = document.getElementById('f_strapColor').value || '';
+    document.getElementById('p_strapPattern').textContent = document.getElementById('f_strapPattern').value || '';
+    document.getElementById('p_strapDesc').textContent = document.getElementById('f_strapDesc').value || '';
+}
+
 function saveDocument() {
     const fields = document.querySelectorAll(
         '.form-panel input, .form-panel select, .form-panel textarea'
@@ -343,6 +510,12 @@ function saveDocument() {
         if (field.id) {
             documentData[field.id] = field.value;
         }
+    });
+
+    // Save checkbox states
+    const checkboxes = document.querySelectorAll('.form-panel input[type="checkbox"]');
+    checkboxes.forEach(cb => {
+        documentData[cb.id] = cb.checked;
     });
 
     localStorage.setItem(
